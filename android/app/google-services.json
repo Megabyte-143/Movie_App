@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "190066695855-om3nvanvmq4s059vcmtba2fe9h5iugqp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.megabyte.movie_app",
+            "certificate_hash": "d76242d91647759bc2f1bc66b24f25f34c49de50"
+          }
+        },
+        {
           "client_id": "190066695855-npn2upfgk7im4jcbbd523mi5tcln8be8.apps.googleusercontent.com",
           "client_type": 3
         }
