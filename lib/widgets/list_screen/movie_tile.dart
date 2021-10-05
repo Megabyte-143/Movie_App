@@ -83,7 +83,7 @@ class MovieTile extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                             Expanded(
+                            Expanded(
                               child: Text(
                                 "Director:",
                                 style: Theme.of(context).textTheme.headline6,
