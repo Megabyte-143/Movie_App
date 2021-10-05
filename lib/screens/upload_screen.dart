@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../widgets/add_screen_header.dart';
@@ -58,60 +59,68 @@ class _UploadScreenState extends State<UploadScreen> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: const Text("Add An Image"),
+            title: const Text(
+              "Add An Image",
+              style: TextStyle(
+                color: Colors.black,
+              ),
+            ),
             actions: [
-              ElevatedButton(
+              ElevatedButton.icon(
                 onPressed: pickFromGallery,
-                child: const Text("Gallery"),
+                icon: FaIcon(Icons.photo_album),
+                label: const Text("Gallery"),
               ),
-              ElevatedButton(
+              ElevatedButton.icon(
                 onPressed: pickFromCamera,
-                child: const Text("Photo"),
+                icon: const FaIcon(Icons.camera),
+                label: const Text("Photo"),
               ),
-              ElevatedButton(
+              ElevatedButton.icon(
                 onPressed: removePhoto,
-                child: const Text("Remove Photo"),
+                icon: const FaIcon(Icons.remove),
+                label: const Text("Remove Photo"),
               ),
-              ElevatedButton(
+              ElevatedButton.icon(
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: const Text("OK"),
+                icon: const Icon(null),
+                label: const Text("DONE"),
               ),
             ],
+            actionsAlignment: MainAxisAlignment.spaceAround,
           );
         });
   }
 
   void submit() async {
     final isValid = _formKey.currentState!.validate();
-
-    if (isValid) {
+    if (_image == null) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(const SnackBar(content: Text("Please Add an Image")));
+    }
+    if (isValid && _image != null) {
       _formKey.currentState!.save();
       try {
-        if (_image == null) {
-          ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text("Please Add an Image")));
-        } else {
-          setState(() {
-            isLoading = true;
-          });
-          final ref = FirebaseStorage.instance
-              .ref()
-              .child('movieImages')
-              .child('$title.jpg');
-          await ref.putFile(_image!);
-          imgUrl = await ref.getDownloadURL();
-          await FirebaseFirestore.instance.collection('movies').doc(title).set({
-            'title': title,
-            'director': director,
-            'imgUrl': imgUrl,
-            'status': false,
-          }).then((value) {
-            ScaffoldMessenger.of(context)
-                .showSnackBar(const SnackBar(content: Text("Movie Added")));
-          });
-        }
+        setState(() {
+          isLoading = true;
+        });
+        final ref = FirebaseStorage.instance
+            .ref()
+            .child('movieImages')
+            .child('$title.jpg');
+        await ref.putFile(_image!);
+        imgUrl = await ref.getDownloadURL();
+        await FirebaseFirestore.instance.collection('movies').doc(title).set({
+          'title': title,
+          'director': director,
+          'imgUrl': imgUrl,
+          'status': false,
+        }).then((value) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(const SnackBar(content: Text("Movie Added")));
+        });
       } catch (error) {
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text('$error')));
