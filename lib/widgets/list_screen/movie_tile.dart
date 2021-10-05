@@ -28,7 +28,7 @@ class MovieTile extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(
         vertical: height * 0.03,
-        horizontal: width * 0.09,
+        horizontal: width * 0.04,
       ),
       height: height * 0.4,
       width: width,
@@ -44,20 +44,19 @@ class MovieTile extends StatelessWidget {
               child: Container(
                   alignment: Alignment.bottomRight,
                   height: height * 0.22,
-                  width: width * 0.7,
+                  width: width * 0.8,
                   decoration: BoxDecoration(
                     color: const Color.fromRGBO(152, 20, 255, 0.41),
                     borderRadius: BorderRadius.circular(30),
                   ),
                   child: Container(
                     decoration: BoxDecoration(
-                      //color: Colors.yellow,
                       borderRadius: BorderRadius.circular(30),
                     ),
-                    width: width * 0.39,
+                    width: width * 0.48,
                     padding: EdgeInsets.symmetric(
                       vertical: height * 0.02,
-                      horizontal: width * 0.01,
+                      horizontal: width * 0.02,
                     ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -65,9 +64,10 @@ class MovieTile extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            const Expanded(
+                            Expanded(
                               child: Text(
                                 "Movie: ",
+                                style: Theme.of(context).textTheme.headline6,
                               ),
                             ),
                             Expanded(
@@ -83,9 +83,10 @@ class MovieTile extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            const Expanded(
+                             Expanded(
                               child: Text(
-                                "Director: ",
+                                "Director:",
+                                style: Theme.of(context).textTheme.headline6,
                               ),
                             ),
                             Expanded(
@@ -152,7 +153,6 @@ class MovieTile extends StatelessWidget {
                 height: height * 0.3,
                 width: width * 0.45,
                 decoration: BoxDecoration(
-                 // color: Colors.yellow,
                   borderRadius: BorderRadius.circular(30),
                   image: DecorationImage(
                     image: NetworkImage(

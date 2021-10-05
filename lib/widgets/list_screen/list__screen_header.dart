@@ -58,8 +58,12 @@ class ListScreenHeader extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: const Center(
-                  child: Text("Hey Yash! \n Here is Your Movie List "),
+                child: Center(
+                  child: Text(
+                    "Hey Yash! \n Here is Your Movie List ",
+                    style: Theme.of(context).textTheme.headline6,
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ),
             ),

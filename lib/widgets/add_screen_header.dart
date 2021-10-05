@@ -13,7 +13,7 @@ class AddScreenHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: height ,
+      height: height,
       width: width,
       child: Stack(
         children: [
@@ -46,8 +46,11 @@ class AddScreenHeader extends StatelessWidget {
                 borderRadius: BorderRadius.circular(50),
                 color: const Color.fromRGBO(152, 20, 255, 0.41),
               ),
-              child: const Center(
-                child: Text("Add a Movie"),
+              child: Center(
+                child: Text(
+                  "Add a Movie",
+                  style: Theme.of(context).textTheme.headline6,
+                ),
               ),
             ),
           ),

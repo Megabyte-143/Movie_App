@@ -57,6 +57,36 @@ class _UploadScreenState extends State<UploadScreen> {
     });
   }
 
+  void addImage() {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text("Add An Image"),
+            actions: [
+              ElevatedButton(
+                onPressed: pickFromGallery,
+                child: const Text("Gallery"),
+              ),
+              ElevatedButton(
+                onPressed: pickFromCamera,
+                child: const Text("Photo"),
+              ),
+              ElevatedButton(
+                onPressed: removePhoto,
+                child: const Text("Remove Photo"),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text("OK"),
+              ),
+            ],
+          );
+        });
+  }
+
   void submit() async {
     final isValid = _formKey.currentState!.validate();
 
@@ -93,9 +123,6 @@ class _UploadScreenState extends State<UploadScreen> {
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text('$error')));
       } finally {
-        setState(() {
-          isLoading = false;
-        });
         Navigator.pop(context);
         _formKey.currentState!.reset();
       }
@@ -108,7 +135,7 @@ class _UploadScreenState extends State<UploadScreen> {
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
-      body: Container(
+      body: SizedBox(
         height: height,
         child: SingleChildScrollView(
           child: Column(
@@ -117,7 +144,7 @@ class _UploadScreenState extends State<UploadScreen> {
                 height: height * 0.3,
                 width: width,
               ),
-              Container(
+              SizedBox(
                 height: height * 0.7,
                 child: Stack(
                   children: [
@@ -144,28 +171,44 @@ class _UploadScreenState extends State<UploadScreen> {
                                 Container(
                                   height: height * (0.05),
                                   width: width * 0.3,
-                                  color: Colors.yellow,
-                                  child: const Center(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    color: const Color.fromRGBO(
+                                      152,
+                                      20,
+                                      255,
+                                      0.41,
+                                    ),
+                                  ),
+                                  child: Center(
                                     child: Text(
                                       "Movie",
+                                      style:
+                                          Theme.of(context).textTheme.headline6,
                                     ),
                                   ),
                                 ),
-                                Container(
-                                  color: Colors.blue,
+                                SizedBox(
+                                  //color: Colors.blue,
                                   height: height * (0.05),
                                   width: width * 0.5,
-                                  child: TextFormField(
-                                    controller: titleTextController,
-                                    validator: (value) {
-                                      if (value!.isEmpty) {
-                                        return 'Please enter a Title';
-                                      }
-                                      return null;
-                                    },
-                                    onSaved: (value) {
-                                      title = value.toString();
-                                    },
+                                  child: Center(
+                                    child: TextFormField(
+                                      controller: titleTextController,
+                                      decoration: const InputDecoration(
+                                        fillColor: Colors.transparent,
+                                        hintText: "Movie Title Here",
+                                      ),
+                                      validator: (value) {
+                                        if (value!.isEmpty) {
+                                          return 'Please enter a Title';
+                                        }
+                                        return null;
+                                      },
+                                      onSaved: (value) {
+                                        title = value.toString();
+                                      },
+                                    ),
                                   ),
                                 ),
                               ],
@@ -176,19 +219,32 @@ class _UploadScreenState extends State<UploadScreen> {
                                 Container(
                                   height: height * (0.05),
                                   width: width * 0.3,
-                                  color: Colors.yellow,
-                                  child: const Center(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    color: const Color.fromRGBO(
+                                      152,
+                                      20,
+                                      255,
+                                      0.41,
+                                    ),
+                                  ),
+                                  child: Center(
                                     child: Text(
                                       "Director",
+                                      style:
+                                          Theme.of(context).textTheme.headline6,
                                     ),
                                   ),
                                 ),
-                                Container(
-                                  color: Colors.blue,
+                                SizedBox(
                                   height: height * (0.05),
                                   width: width * 0.5,
                                   child: TextFormField(
                                     controller: directorTextController,
+                                    decoration: const InputDecoration(
+                                      fillColor: Colors.transparent,
+                                      hintText: "Director's Name Here",
+                                    ),
                                     validator: (value) {
                                       if (value!.isEmpty) {
                                         return 'Please enter a Title';
@@ -206,62 +262,59 @@ class _UploadScreenState extends State<UploadScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Container(
-                                    height: height * (0.05),
-                                    width: width * 0.3,
-                                    color: Colors.yellow,
-                                    child: ElevatedButton(
-                                      onPressed: () {
-                                        showDialog(
-                                            context: context,
-                                            builder: (context) {
-                                              return AlertDialog(
-                                                title:
-                                                    const Text("Add An Image"),
-                                                actions: [
-                                                  ElevatedButton(
-                                                    onPressed: pickFromGallery,
-                                                    child:
-                                                        const Text("Gallery"),
-                                                  ),
-                                                  ElevatedButton(
-                                                    onPressed: pickFromCamera,
-                                                    child: const Text("Photo"),
-                                                  ),
-                                                  ElevatedButton(
-                                                    onPressed: removePhoto,
-                                                    child: const Text(
-                                                        "Remove Photo"),
-                                                  ),
-                                                  ElevatedButton(
-                                                    onPressed: () {
-                                                      Navigator.pop(context);
-                                                    },
-                                                    child: const Text("OK"),
-                                                  ),
-                                                ],
-                                              );
-                                            });
-                                      },
-                                      child: const Text("Add Image"),
-                                    )),
+                                  height: height * (0.05),
+                                  width: width * 0.3,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    color: const Color.fromRGBO(
+                                        152, 20, 255, 0.41),
+                                  ),
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      addImage();
+                                    },
+                                    child: Text(
+                                      "Add Image",
+                                      style:
+                                          Theme.of(context).textTheme.headline5,
+                                    ),
+                                  ),
+                                ),
                                 Container(
                                   height: height * 0.3,
-                                  // color: Colors.blue,
                                   width: width * 0.5,
-                                  decoration: const BoxDecoration(
-                                      //color: Colors.blue,
-                                      // image: DecorationImage(
-                                      //   image: AssetImage(image==null ? '': image!.path),
-                                      // ),
-                                      ),
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey.shade200,
+                                    borderRadius: BorderRadius.circular(50),
+                                  ),
                                   child: _image == null
                                       ? const Center(
                                           child: Text("Pick an Image"),
                                         )
-                                      : Image.file(
-                                          _image!,
-                                          fit: BoxFit.contain,
-                                          alignment: Alignment.center,
+                                      : Material(
+                                          elevation: 20,
+                                          color: Colors.transparent,
+                                          shadowColor: Colors.transparent,
+                                          borderRadius:
+                                              BorderRadius.circular(50),
+                                          child: Container(
+                                            height: height * 0.3,
+                                            width: width * 0.5,
+                                            padding: EdgeInsets.symmetric(
+                                              vertical: height * 0.01,
+                                              horizontal: width * 0.01,
+                                            ),
+                                            decoration: BoxDecoration(
+                                              color: Colors.grey.shade200,
+                                              borderRadius:
+                                                  BorderRadius.circular(50),
+                                            ),
+                                            child: Image.file(
+                                              _image!,
+                                              fit: BoxFit.contain,
+                                              alignment: Alignment.center,
+                                            ),
+                                          ),
                                         ),
                                 ),
                               ],
@@ -279,7 +332,12 @@ class _UploadScreenState extends State<UploadScreen> {
                                     ? const Center(
                                         child: CircularProgressIndicator(),
                                       )
-                                    : const Text("Add Movie"),
+                                    : Text(
+                                        "Add Movie",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline5,
+                                      ),
                               ),
                             )
                           ],
