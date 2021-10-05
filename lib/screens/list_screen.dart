@@ -8,7 +8,7 @@ import '../provider/movie_list_provider.dart';
 import '../widgets/list_screen/movie_tile.dart';
 import '../widgets/list_screen/list__screen_header.dart';
 
-import 'add_screen.dart';
+import 'upload_screen.dart';
 
 class ListScreen extends StatelessWidget {
   const ListScreen({Key? key}) : super(key: key);
@@ -73,7 +73,7 @@ class ListScreen extends StatelessWidget {
             child: Center(
               child: IconButton(
                 onPressed: () {
-                  Navigator.of(context).pushNamed(AddScreen.routeName);
+                  Navigator.of(context).pushNamed(UploadScreen.routeName);
                 },
                 icon: const FaIcon(
                   FontAwesomeIcons.plusCircle,

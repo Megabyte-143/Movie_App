@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_app/provider/movie_list_provider.dart';
 import 'package:provider/provider.dart';
 
-import 'screens/add_screen.dart';
+import 'screens/upload_screen.dart';
 import 'screens/list_screen.dart';
 
 void main() {
@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
               ),
               home: ListScreen(),
               routes: {
-                AddScreen.routeName: (ctx) => const AddScreen(),
+                UploadScreen.routeName: (ctx) => const UploadScreen(),
               },
             ),
           );
