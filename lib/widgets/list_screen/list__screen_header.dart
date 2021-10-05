@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class ListScreenHeader extends StatelessWidget {
@@ -12,6 +13,7 @@ class ListScreenHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userData = FirebaseAuth.instance.currentUser!;
     return SizedBox(
       height: height * 0.3,
       width: width,
@@ -60,7 +62,7 @@ class ListScreenHeader extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    "Hey Yash! \n Here is Your Movie List ",
+                    "Hey ${userData.displayName!.split(" ")[0].toUpperCase()} ! \n Here is Your Movie List ",
                     style: Theme.of(context).textTheme.headline6,
                     textAlign: TextAlign.center,
                   ),

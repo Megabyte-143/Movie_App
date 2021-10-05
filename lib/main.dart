@@ -2,8 +2,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'provider/google_signin_provider.dart';
 import 'provider/movie_list_provider.dart';
 
+import 'screens/login_screen.dart';
 import 'screens/upload_screen.dart';
 import 'screens/list_screen.dart';
 
@@ -36,8 +38,15 @@ class MyApp extends StatelessWidget {
             ),
           );
         } else {
-          return ChangeNotifierProvider(
-            create: (_) => MovieListProvider(),
+          return MultiProvider(
+            providers: [
+              ChangeNotifierProvider<SignInProvider>(
+                create: (_) => SignInProvider(),
+              ),
+              ChangeNotifierProvider(
+                create: (_) => MovieListProvider(),
+              ),
+            ],
             child: MaterialApp(
               title: 'Flutter Demo',
               theme: ThemeData(
@@ -58,9 +67,11 @@ class MyApp extends StatelessWidget {
                   ),
                 ),
               ),
-              home: const ListScreen(),
+              home: const LoginScreen(),
               routes: {
+                ListScreen.routename: (ctx) => const ListScreen(),
                 UploadScreen.routeName: (ctx) => const UploadScreen(),
+                LoginScreen.routename:(ctx)=> const LoginScreen(),
               },
             ),
           );
