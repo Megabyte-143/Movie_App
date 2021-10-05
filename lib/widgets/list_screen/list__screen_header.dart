@@ -12,7 +12,7 @@ class ListScreenHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: height * 0.3,
       width: width,
       child: Stack(

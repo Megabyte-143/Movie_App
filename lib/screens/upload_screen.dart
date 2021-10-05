@@ -31,8 +31,6 @@ class _UploadScreenState extends State<UploadScreen> {
       source: ImageSource.gallery,
     );
     final pickedImageFile = File(pickedImage!.path);
-    print(pickedImage.name);
-    print(pickedImage.path);
     setState(() {
       _image = pickedImageFile;
     });
@@ -44,8 +42,6 @@ class _UploadScreenState extends State<UploadScreen> {
       source: ImageSource.camera,
     );
     final pickedImageFile = File(pickedImage!.path);
-    print(pickedImage.name);
-    print(pickedImage.path);
     setState(() {
       _image = pickedImageFile;
     });
@@ -100,9 +96,6 @@ class _UploadScreenState extends State<UploadScreen> {
           setState(() {
             isLoading = true;
           });
-          print(director);
-          print(title);
-          print(_image!.path);
           final ref = FirebaseStorage.instance
               .ref()
               .child('movieImages')
