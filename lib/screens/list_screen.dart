@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
-import '../provider/google_signin_provider.dart';
+import '../provider/signin_provider.dart';
 import '../provider/movie_list_provider.dart';
 
 import '../widgets/list_screen/movie_tile.dart';

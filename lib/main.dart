@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'provider/google_signin_provider.dart';
+import 'provider/signin_provider.dart';
 import 'provider/movie_list_provider.dart';
 
 import 'screens/login_screen.dart';
