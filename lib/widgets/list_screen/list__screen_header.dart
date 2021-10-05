@@ -14,6 +14,12 @@ class ListScreenHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final userData = FirebaseAuth.instance.currentUser!;
+    final String name;
+    if (userData.isAnonymous) {
+      name = "NULL";
+    } else {
+      name = userData.displayName!.split(" ")[0].toUpperCase();
+    }
     return SizedBox(
       height: height * 0.3,
       width: width,
@@ -62,7 +68,7 @@ class ListScreenHeader extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    "Hey ${userData.displayName!.split(" ")[0].toUpperCase()} ! \n Here is Your Movie List ",
+                    "Hey $name ! \n Here is Your Movie List ",
                     style: Theme.of(context).textTheme.headline6,
                     textAlign: TextAlign.center,
                   ),

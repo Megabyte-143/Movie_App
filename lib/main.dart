@@ -48,6 +48,7 @@ class MyApp extends StatelessWidget {
               ),
             ],
             child: MaterialApp(
+              debugShowCheckedModeBanner: false,
               title: 'Flutter Demo',
               theme: ThemeData(
                 backgroundColor: const Color.fromRGBO(229, 229, 229, 1),
