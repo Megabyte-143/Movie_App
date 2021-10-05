@@ -8,8 +8,7 @@ class LoginScreen extends StatelessWidget {
   static const routename = "/login_screen";
   @override
   Widget build(BuildContext context) {
-    final signInProvider =
-        Provider.of<SignInProvider>(context, listen: false);
+    final signInProvider = Provider.of<SignInProvider>(context, listen: false);
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       body: Center(
@@ -37,9 +36,10 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  child: const Center(
+                  child: Center(
                     child: Text(
-                      "GOOGLE LOGIN",
+                      "Sign in with GOOGLE",
+                      style: Theme.of(context).textTheme.headline6,
                     ),
                   ),
                 ),
@@ -66,9 +66,10 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  child: const Center(
+                  child: Center(
                     child: Text(
                       "Sign In Anonymously",
+                      style: Theme.of(context).textTheme.headline6,
                     ),
                   ),
                 ),
